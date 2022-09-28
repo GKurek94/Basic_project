@@ -1,7 +1,6 @@
 #blackjack machine simulator
 import random
 
-BALANCE = 0 
 
 def cash_in():
     while True:
@@ -40,7 +39,7 @@ def player_roll():
     return random.choice(possibilities)
 
 def game_of_computer():
-    BALANCE = 0 
-    while BALANCE < 21:
+    balance = 0 
+    while balance < 21:
 
-    return BALANCE
+    return balance
