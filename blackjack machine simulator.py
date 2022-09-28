@@ -42,6 +42,5 @@ def player_roll():
 def game_of_computer():
     BALANCE = 0 
     while BALANCE < 21:
-        BALANCE += random.choice(CARDS.values)
+
     return BALANCE
-game_of_computer()
