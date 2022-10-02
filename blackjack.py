@@ -15,7 +15,8 @@ def cash_in():
             print("The number is incorrect. Type another number")
     return amount
 
-
+MIN_BET = 1
+MAX_BET = 200
 CARDS = {
     '1': 1,
     '2': 2,
@@ -46,8 +47,18 @@ def player_roll():
 #    while balance_of_computer < 21:
 #
 #    return balance_of_player
-
-
+def bet():
+    while True:
+        amount = input("How much would you like to bet?")
+        if amount.isdigit():
+            amount = int(amount)
+            if MIN_BET <= amount <= MAX_BET:
+                break
+            else:
+                print("Amount must be greater than 0.")
+        else:
+            print("Please enter the appropriate number.")
+    return amount
 def game_of_player():
     balance_of_player = 0
     balance_of_computer = 0
