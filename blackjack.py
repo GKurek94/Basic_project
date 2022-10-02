@@ -15,6 +15,8 @@ def cash_in():
             print("The number is incorrect. Type another number")
     return amount
 
+
+CASH = 0
 MIN_BET = 1
 MAX_BET = 200
 CARDS = {
@@ -36,17 +38,20 @@ CARDS = {
 
 
 def player_roll():
-    # function which decides who is starting the game
-    possibilities = ['player', 'casino']
-    return random.choice(possibilities)
+    pass
 
+def hands():
+    player_hand = []
+    computer_hand = []
+    while len(player_hand) != 2:
+        player_hand.append(random.choice(CARDS))
+        if player_hand == 2:
+            print(f"Player's cards are: {player_hand}")
+    while len(computer_hand) != 2:
+        computer_hand.append(random.choice(CARDS))
+        if computer_hand == 2:
+            print(f"Computer's cards are X and  {player_hand[-1]}")
 
-# def game_of_computer():
-#    balance_of_player = 0
-#    balance_of_computer = 0
-#    while balance_of_computer < 21:
-#
-#    return balance_of_player
 def bet():
     while True:
         amount = input("How much would you like to bet?")
@@ -59,6 +64,14 @@ def bet():
         else:
             print("Please enter the appropriate number.")
     return amount
+
+
+def main():
+    balance = cash_in()
+    while True:
+        bets = bet()
+
+
 def game_of_player():
     balance_of_player = 0
     balance_of_computer = 0
@@ -77,6 +90,14 @@ def game_of_player():
         else:
             starting_player += random.choice(list(CARDS.values()))
             print("1:", starting_player)
+            x = input("Do you want to bet more in this round? yes/no")
+            if x == "yes":
+                y = input("How much do you want to bet?")
+
+            elif x == "no":
+                continue
+            else:
+                input("Wrong answer. Do you want to bet more in this round? yes/no")
             second_player += random.choice(list(CARDS.values()))
             print("2:", second_player)
 
