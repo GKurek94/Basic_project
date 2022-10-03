@@ -40,17 +40,30 @@ CARDS = {
 def player_roll():
     pass
 
+
 def hands():
     player_hand = []
+    player_hand_value = []
     computer_hand = []
+    computer_hand_value = []
+
     while len(player_hand) != 2:
-        player_hand.append(random.choice(CARDS))
-        if player_hand == 2:
-            print(f"Player's cards are: {player_hand}")
+        var_p = random.choice(list(CARDS.keys()))
+        val_var_p = CARDS[var_p]
+        player_hand.append(var_p)
+        player_hand_value.append(int(val_var_p))
+        if len(player_hand) == 2:
+            print(f"Player's cards are: {player_hand} and it's value is equal to: {sum(player_hand_value)}")
+
     while len(computer_hand) != 2:
-        computer_hand.append(random.choice(CARDS))
-        if computer_hand == 2:
-            print(f"Computer's cards are X and  {player_hand[-1]}")
+        var_c = random.choice(list(CARDS.keys()))
+        val_var_c = CARDS[var_c]
+        computer_hand.append(var_c)
+        computer_hand_value.append(int(val_var_c))
+        if len(computer_hand) == 2:
+            print(f"Computer's cards are X and  {player_hand[-1]}"
+                  f" and it's value is equal to: {sum(computer_hand_value)}")
+
 
 def bet():
     while True:
@@ -102,5 +115,5 @@ def game_of_player():
             print("2:", second_player)
 
 
-game_of_player()
+hands()
 
