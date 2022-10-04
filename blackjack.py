@@ -16,6 +16,9 @@ def cash_in():
     return amount
 
 
+CASH = 0
+MIN_BET = 1
+MAX_BET = 200
 CARDS = {
     '1': 1,
     '2': 2,
@@ -35,17 +38,65 @@ CARDS = {
 
 
 def player_roll():
-    # function which decides who is starting the game
-    possibilities = ['player', 'casino']
-    return random.choice(possibilities)
+    pass
 
 
-# def game_of_computer():
-#    balance_of_player = 0
-#    balance_of_computer = 0
-#    while balance_of_computer < 21:
-#
-#    return balance_of_player
+def players_hand():
+    player_hand = []
+    player_hand_value = []
+
+    while len(player_hand) != 2:
+        var_p = random.choice(list(CARDS.keys()))
+        val_var_p = CARDS[var_p]
+        player_hand.append(var_p)
+        player_hand_value.append(int(val_var_p))
+        if len(player_hand) == 2:
+            print(f"Player's cards are: {player_hand} and it's value is equal to: {sum(player_hand_value)}")
+
+        return sum(player_hand_value)
+
+
+def computers_hand():
+    computer_hand = []
+    computer_hand_value = []
+
+    while len(computer_hand) != 2:
+        var_c = random.choice(list(CARDS.keys()))
+        val_var_c = CARDS[var_c]
+        computer_hand.append(var_c)
+        computer_hand_value.append(int(val_var_c))
+        if len(computer_hand) == 2:
+            print(f"Computer's cards are X and  {computer_hand[-1]}"
+                  f" and it's value is equal to: {sum(computer_hand_value)}")
+            return sum(computer_hand_value)
+
+
+def bet():
+    while True:
+        amount = input("How much would you like to bet?")
+        if amount.isdigit():
+            amount = int(amount)
+            if MIN_BET <= amount <= MAX_BET:
+                break
+            else:
+                print("Amount must be greater than 0.")
+        else:
+            print("Please enter the appropriate number.")
+    return amount
+
+
+def main():
+    balance = cash_in()
+    while True:
+        bets = bet()
+
+
+def game():
+    com_sum = computers_hand()
+    if com_sum == 21:
+        print("Computer has won.")
+    elif com_sum > 21:
+        print("Player won, because computer had value over 21. ")
 
 
 def game_of_player():
@@ -66,9 +117,17 @@ def game_of_player():
         else:
             starting_player += random.choice(list(CARDS.values()))
             print("1:", starting_player)
+            x = input("Do you want to bet more in this round? yes/no")
+            if x == "yes":
+                y = input("How much do you want to bet?")
+
+            elif x == "no":
+                continue
+            else:
+                input("Wrong answer. Do you want to bet more in this round? yes/no")
             second_player += random.choice(list(CARDS.values()))
             print("2:", second_player)
 
 
-game_of_player()
+print(computers_hand())
 
