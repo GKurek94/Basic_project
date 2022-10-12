@@ -93,10 +93,33 @@ def main():
 
 def game():
     com_sum = computers_hand()
+    player_sum = players_hand()
     if com_sum == 21:
         print("Computer has won.")
     elif com_sum > 21:
         print("Player won, because computer had value over 21. ")
+    while player_sum < 21:
+        decision = input("Do you want to bet/stay/hit?")
+        if decision == "hit":
+            player_sum += (int(random.choice(list(CARDS.values()))))
+            print(f"After hit your hand's value is {player_sum}")
+        elif decision == "bet":
+            actual_bet = bet()
+            player_sum += (int(random.choice(list(CARDS.values()))))
+            print(f"After hit your hand's value is {player_sum} with actual bet: {actual_bet}")
+        elif decision == "stay":
+            print(f"Values of the hands are: "
+                  f"player: {int(player_sum)}"
+                  f"computer: {int(com_sum)}")
+            if com_sum > player_sum:
+                print("Computer wins!")
+            else:
+                print("Player wins!")
+                break
+    if player_sum > 21:
+        print("Computer wins!")
+    elif player_sum == 21:
+        print("Player wins!")
 
 
 def game_of_player():
@@ -129,5 +152,5 @@ def game_of_player():
             print("2:", second_player)
 
 
-print(computers_hand())
+print(game())
 
