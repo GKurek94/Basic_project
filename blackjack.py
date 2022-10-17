@@ -1,19 +1,6 @@
 # blackjack machine simulator
+## została zmiana amount i komentarze
 import random
-
-
-def cash_in():
-    while True:
-        amount = input("Type amount of money you want to play with: ")
-        if amount.isdigit():
-            amount = int(amount)
-            if amount > 0:
-                break
-            else:
-                print('Given number must be greater than 0.')
-        else:
-            print("The number is incorrect. Type another number")
-    return amount
 
 
 CASH = 0
@@ -35,10 +22,6 @@ CARDS = {
     'K': 10,
     'A': 11,  # A is 1 or 11 depends which is better for the player
 }
-
-
-def player_roll():
-    pass
 
 
 def players_hand():
@@ -87,6 +70,7 @@ def game():
     money = bet()
     com_sum = computers_hand()
     player_sum = players_hand()
+
     if com_sum == 21:
         print("Computer has won.")
     elif com_sum > 21:
