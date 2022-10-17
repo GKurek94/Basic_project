@@ -122,35 +122,5 @@ def game():
         print("Player wins!")
 
 
-def game_of_player():
-    balance_of_player = 0
-    balance_of_computer = 0
-    x = player_roll()
-    if x == 'player':
-        starting_player = balance_of_player
-        second_player = balance_of_computer
-    else:
-        starting_player = balance_of_computer
-        second_player = balance_of_player
-    while True:
-        if starting_player > 21:
-            return f'The winner is player with {second_player} points'
-        elif second_player > 21:
-            return f'The winner is player with {starting_player} points'
-        else:
-            starting_player += random.choice(list(CARDS.values()))
-            print("1:", starting_player)
-            x = input("Do you want to bet more in this round? yes/no")
-            if x == "yes":
-                y = input("How much do you want to bet?")
-
-            elif x == "no":
-                continue
-            else:
-                input("Wrong answer. Do you want to bet more in this round? yes/no")
-            second_player += random.choice(list(CARDS.values()))
-            print("2:", second_player)
-
-
 print(game())
 
