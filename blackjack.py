@@ -51,9 +51,8 @@ def players_hand():
         player_hand.append(var_p)
         player_hand_value.append(int(val_var_p))
         if len(player_hand) == 2:
-            print(f"Player's cards are: {player_hand} and it's value is equal to: {sum(player_hand_value)}")
-
-        return sum(player_hand_value)
+            print(f"Player's cards are: {player_hand}")
+            return sum(player_hand_value)
 
 
 def computers_hand():
@@ -66,8 +65,7 @@ def computers_hand():
         computer_hand.append(var_c)
         computer_hand_value.append(int(val_var_c))
         if len(computer_hand) == 2:
-            print(f"Computer's cards are X and  {computer_hand[-1]}"
-                  f" and it's value is equal to: {sum(computer_hand_value)}")
+            print(f"Computer's cards are X and {computer_hand[-1]}")
             return sum(computer_hand_value)
 
 
@@ -79,13 +77,14 @@ def bet():
             if MIN_BET <= amount <= MAX_BET:
                 break
             else:
-                print("Amount must be greater than 0.")
+                print("Amount must be greater than 0 and lower than Maximum bet.")
         else:
             print("Please enter the appropriate number.")
     return amount
 
 
 def game():
+    money = bet()
     com_sum = computers_hand()
     player_sum = players_hand()
     if com_sum == 21:
@@ -100,16 +99,20 @@ def game():
         elif decision == "bet":
             actual_bet = bet()
             player_sum += (int(random.choice(list(CARDS.values()))))
-            print(f"After hit your hand's value is {player_sum} with actual bet: {actual_bet}")
+            print(f"After hit your hand's value is {player_sum} with actual bet: {int(money) + int(actual_bet)}")
         elif decision == "stay":
+            while com_sum < player_sum:
+                com_sum += (int(random.choice(list(CARDS.values()))))
             print(f"Values of the hands are: "
-                  f"player: {int(player_sum)}"
-                  f"computer: {int(com_sum)}")
-            if com_sum > player_sum:
-                print("Computer wins!")
-            else:
+                  f"player: {int(player_sum)} "
+                  f"computer: {int(com_sum)}.")
+            if com_sum > 21:
                 print("Player wins!")
-                break
+            elif player_sum < com_sum < 21:
+                return "Computer wins!"
+            else:
+                return "Player wins!"
+
     if player_sum > 21:
         return "Computer wins!"
 
@@ -118,4 +121,3 @@ def game():
 
 
 print(game())
-
