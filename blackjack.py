@@ -85,12 +85,6 @@ def bet():
     return amount
 
 
-def main():
-    balance = cash_in()
-    while True:
-        bets = bet()
-
-
 def game():
     com_sum = computers_hand()
     player_sum = players_hand()
@@ -117,9 +111,10 @@ def game():
                 print("Player wins!")
                 break
     if player_sum > 21:
-        print("Computer wins!")
+        return "Computer wins!"
+
     elif player_sum == 21:
-        print("Player wins!")
+        return "Player wins!"
 
 
 print(game())
