@@ -1,8 +1,9 @@
 # blackjack machine simulator
-## została zmiana amount i komentarze
+
+# Importing required libraries
 import random
 
-
+# constant variables which can be changed in program
 CASH = 0
 MIN_BET = 1
 MAX_BET = 200
@@ -24,6 +25,7 @@ CARDS = {
 }
 
 
+# creating player hand composed of 2 hands, the result of the function is value of both hands
 def players_hand():
     player_hand = []
     player_hand_value = []
@@ -38,6 +40,7 @@ def players_hand():
             return sum(player_hand_value)
 
 
+# creating computer hand composed of 2 hands, the result of the function is value of both hands
 def computers_hand():
     computer_hand = []
     computer_hand_value = []
@@ -78,11 +81,21 @@ def game():
     while player_sum < 21:
         decision = input("Do you want to bet/stay/hit?")
         if decision == "hit":
-            player_sum += (int(random.choice(list(CARDS.values()))))
+            next_card = random.choice(list(CARDS.keys()))
+            if next_card == 'A' and player_sum > 11:
+                player_sum += 1
+            else:
+                val_next_card = CARDS[next_card]
+                player_sum += (int(val_next_card))
             print(f"After hit your hand's value is {player_sum}")
         elif decision == "bet":
             actual_bet = bet()
-            player_sum += (int(random.choice(list(CARDS.values()))))
+            next_card = random.choice(list(CARDS.keys()))
+            if next_card == 'A' and player_sum > 11:
+                player_sum += 1
+            else:
+                val_next_card = CARDS[next_card]
+                player_sum += (int(val_next_card))
             print(f"After hit your hand's value is {player_sum} with actual bet: {int(money) + int(actual_bet)}")
         elif decision == "stay":
             while com_sum < player_sum:
