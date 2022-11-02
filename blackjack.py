@@ -83,9 +83,10 @@ def game():
         print("Computer has won.")
     elif com_sum > 21:
         print("Player won, because computer had value over 21. ")
-    # looping to create computer and player's hand
+    # looping to create the game, where player decides what to do
     while player_sum < 21:
         decision = input("Do you want to bet/stay/hit?")
+        # hit decision
         if decision == "hit":
             next_card = random.choice(list(CARDS.keys()))
             if next_card == 'A' and player_sum > 11:
@@ -94,6 +95,7 @@ def game():
                 val_next_card = CARDS[next_card]
                 player_sum += (int(val_next_card))
             print(f"After hit your hand's value is {player_sum}")
+        # bet decision which adds new card to hand
         elif decision == "bet":
             actual_bet = bet()
             next_card = random.choice(list(CARDS.keys()))
@@ -103,6 +105,7 @@ def game():
                 val_next_card = CARDS[next_card]
                 player_sum += (int(val_next_card))
             print(f"After hit your hand's value is {player_sum} with actual bet: {int(money) + int(actual_bet)}")
+        # stay decision which basically finishes the game
         elif decision == "stay":
             while com_sum < player_sum:
                 com_sum += (int(random.choice(list(CARDS.values()))))
