@@ -55,6 +55,7 @@ def computers_hand():
             return sum(computer_hand_value)
 
 
+# Function about the bet and it's value
 def bet():
     while True:
         amount = input("How much would you like to bet?")
@@ -69,15 +70,20 @@ def bet():
     return amount
 
 
+# main function
 def game():
+
+    # values from previous functions
     money = bet()
     com_sum = computers_hand()
     player_sum = players_hand()
 
+    # condition describing computer's value
     if com_sum == 21:
         print("Computer has won.")
     elif com_sum > 21:
         print("Player won, because computer had value over 21. ")
+    # looping to create computer and player's hand
     while player_sum < 21:
         decision = input("Do you want to bet/stay/hit?")
         if decision == "hit":
