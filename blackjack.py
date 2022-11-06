@@ -105,17 +105,26 @@ def game():
                 val_next_card = CARDS[next_card]
                 player_sum += (int(val_next_card))
             print(f"After hit your hand's value is {player_sum} with actual bet: {int(money) + int(actual_bet)}")
+
         # stay decision which basically finishes the game
         elif decision == "stay":
+
+            # situation when computer's value is lower than players so computer needs to "bet"
             while com_sum < player_sum:
                 com_sum += (int(random.choice(list(CARDS.values()))))
             print(f"Values of the hands are: "
                   f"player: {int(player_sum)} "
                   f"computer: {int(com_sum)}.")
+
+            # situation when computer loses because of value higher than 21
             if com_sum > 21:
                 print("Player wins!")
+
+            # computer wins
             elif player_sum < com_sum < 21:
                 return "Computer wins!"
+
+            # player wins
             else:
                 return "Player wins!"
 
